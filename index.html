@@ -414,12 +414,11 @@ var features = {
     color: "blue",
     iconSvg: '<svg width="20" height="20" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5.5" r="2.5" stroke="#1a4fa0" stroke-width="1.2"/><path d="M2 14c0-3 2.7-4.5 6-4.5s6 1.5 6 4.5" stroke="#1a4fa0" stroke-width="1.2" stroke-linecap="round"/></svg>',
     iconBg: "var(--blue-bg)",
-    desc: "EPIC Intercom enables full-duplex, hands-free two-way audio between the front office and any classroom or location on campus. Communication is direct and immediate — no phone lines needed. Staff can initiate a conversation from the EPIC Kiosk, web browser, or mobile app.",
+    desc: "EPIC Intercom enables full-duplex, hands-free two-way audio between the front office and any classroom or addressable location on campus. Communication is direct and immediate — no phone lines needed. Staff can initiate a conversation from the EPIC Kiosk, web browser, or mobile app.",
     uses: [
       "Office staff need to reach a specific classroom without disrupting the whole school",
       "A teacher needs to speak directly with the front office",
-      "Confirming a student pickup with a specific room",
-      "Quick check-ins between staff in different buildings on campus"
+      "Confirming a student pickup with a specific room"
     ],
     tip: "Intercom is point-to-point — it connects two specific locations. For messages that need to reach multiple rooms at once, use Paging instead.",
     who: ["Office staff", "Administrators", "Teachers"]
@@ -432,12 +431,11 @@ var features = {
     iconBg: "var(--green-bg)",
     desc: "Paging allows authorized staff to broadcast audio announcements to the entire campus or to selected zones — such as just hallways, one wing, or only outdoor speakers. Announcements can be delivered live or pre-recorded and scheduled in advance.",
     uses: [
-      "Morning announcements sent only to common areas while classes are in session",
       "A lunch reminder broadcast to the cafeteria and hallways only",
       "A pre-recorded safety reminder scheduled to play at a set time daily",
       "Targeted messages to specific grade-level wings without interrupting other classes"
     ],
-    tip: "Use zone targeting to minimize classroom disruption. Sending a page only to hallways and common areas keeps instructional time protected.",
+    tip: "You can page from the EPIC Kiosk, a web browser, or the mobile app — so you're never tied to one location to make an announcement.",
     who: ["Office staff", "Administrators", "Front office coordinators"]
   },
   bells: {
@@ -451,7 +449,8 @@ var features = {
       "Setting up a modified schedule for minimum days or special events",
       "Creating a separate schedule for testing days with longer periods",
       "Switching to a different schedule on the fly the morning of an unexpected change",
-      "Using a custom audio tone or recorded message instead of a standard bell sound"
+      "Using a custom audio tone or recorded message instead of a standard bell sound",
+      "Ringing or excluding bells from specific zones"
     ],
     tip: "Schedule changes can be made in real time from any authorized device — you don't need to be at the EPIC Kiosk to update the bell schedule mid-day.",
     who: ["Administrators", "Office managers", "IT coordinators"]
@@ -477,13 +476,13 @@ var features = {
 var troubles = [
   { feature: "intercom", q: "No audio during an intercom call — both sides can't hear each other", sev: "quick", a: "This is almost always a volume or connection issue.", steps: ["Check that the speaker volume on both ends is turned up.", "Confirm neither device is muted at the hardware level.", "Verify the call was actually connected — look for the active call indicator in EPIC.", "If using a headset or external speaker, check the cable connection.", "Try initiating the call again from the other end."] },
   { feature: "intercom", q: "Intercom call connects but audio is one-way only", sev: "check", a: "One-way audio usually points to a microphone issue on the silent end.", steps: ["Check that the microphone on the non-transmitting device is not muted.", "If using the EPIC Kiosk, confirm the built-in mic is not blocked or disabled in settings.", "Test by initiating a call from the affected device to a known working device.", "If the issue persists on one specific room only, that room's hardware may need inspection — contact IT."] },
-  { feature: "intercom", q: "Can't find a specific room or location in the intercom directory", sev: "check", a: "The room may not be added to the EPIC directory, or may be listed under a different name.", steps: ["Search by room number and by teacher name — the listing may use either.", "Check with your EPIC administrator — the location may need to be added.", "Verify the device in that room is powered on and connected to the network."] },
-  { feature: "paging", q: "Page goes out but some rooms don't receive it", sev: "check", a: "The most common cause is incorrect zone selection or a device that is offline.", steps: ["Confirm the zones selected for the page include the rooms that missed it.", "Check whether the missing rooms are in a different zone than expected.", "Verify the speakers or devices in those rooms are powered on.", "If a whole zone is missing, that zone's network connection may need to be checked by IT."] },
+  { feature: "intercom", q: "Can't find a specific room or location in the intercom directory", sev: "check", a: "The room may not be added to the EPIC directory, or may be listed under a different name.", steps: ["Search by room number — the listing may use the room number or a custom label.", "Check with your EPIC administrator — the location may need to be added.", "Verify the device in that room is powered on and connected to the network."] },
+  { feature: "paging", q: "Page goes out but some rooms don't receive it", sev: "check", a: "The most common cause is incorrect zone selection or a device that is offline.", steps: ["Confirm the zones selected for the page include the rooms that missed it.", "Check whether the missing rooms are in a different zone than expected.", "If a whole zone is missing, that zone's network connection may need to be checked by IT."] },
   { feature: "paging", q: "Pre-recorded announcement plays at the wrong time", sev: "quick", a: "This is typically a schedule or time zone configuration issue.", steps: ["Open the EPIC scheduling panel and confirm the announcement time is set correctly.", "Check that the EPIC Appliance clock is set to the correct local time zone.", "Confirm AM/PM is correct — this is a common entry error.", "If the schedule looks correct but timing is still off, contact IT to verify the server clock."] },
   { feature: "paging", q: "Live page audio sounds distorted or has feedback", sev: "quick", a: "Feedback during a live page is usually caused by nearby speakers picking up the microphone.", steps: ["Move away from any active speakers while paging.", "Lower the microphone input sensitivity in EPIC audio settings if available.", "If using the Kiosk, ensure you are speaking directly into the mic at a normal volume.", "Persistent distortion on a specific zone may indicate a hardware issue — log it with IT."] },
   { feature: "bells", q: "Bells are not ringing at the correct times", sev: "check", a: "The most likely cause is the wrong schedule being active for today.", steps: ["Open the EPIC bell scheduler and confirm which schedule is currently active.", "Check whether a special schedule (minimum day, testing) was left active by mistake.", "Verify the EPIC Appliance time and time zone are correct.", "Confirm today's date in the system — a date mismatch can trigger the wrong schedule."] },
   { feature: "bells", q: "Bell rings but uses the wrong audio tone", sev: "quick", a: "A different audio file may be assigned to this bell event.", steps: ["Open the bell event in the scheduler and check which audio file is assigned.", "Preview the assigned audio to confirm it is the correct file.", "Re-assign the correct audio file if needed and save the schedule.", "If the correct file is missing from the library, re-upload it under EPIC audio management."] },
-  { feature: "bells", q: "Need to temporarily suspend bells for an event or testing day", sev: "quick", a: "EPIC allows you to override or pause the bell schedule without deleting it.", steps: ["Navigate to the bell scheduler and select today's schedule.", "Use the 'override' or 'suspend' option to pause bells for a time range.", "Alternatively, switch to a custom schedule that has no bells defined for the relevant period.", "Remember to re-activate the regular schedule when the event is over."] },
+  { feature: "bells", q: "Need to temporarily suspend bells for an event or testing day", sev: "quick", a: "EPIC allows you to override or pause the bell schedule without deleting it.", steps: ["Navigate to the bell scheduler and select today's schedule.", "Use the 'override' or 'suspend' option to pause bells for a time range.", "Remember to re-activate the regular schedule when the event is over."] },
   { feature: "visual", q: "Message sent but not showing on InfoView displays", sev: "check", a: "The display may be offline, the message may be targeting the wrong zone, or the display needs a refresh.", steps: ["Confirm the InfoView display is powered on and the screen is active (not in sleep mode).", "Check that the message was sent to the correct zone or display group.", "Refresh the InfoView display from the EPIC admin panel.", "If a specific display is consistently unresponsive, check its network connection or contact IT."] },
   { feature: "visual", q: "Emergency alert sent but display shows outdated message", sev: "it", a: "Emergency alerts should override all existing content — if they are not, this needs immediate IT attention.", steps: ["Verify the message was sent using the emergency/priority alert option, not a standard message.", "Check the EPIC alert log to confirm the message was transmitted successfully.", "If the display is still showing old content, the InfoView Interface may have lost its network connection.", "Contact IT immediately if emergency alerts are not displaying correctly — do not rely on the system until resolved."] },
   { feature: "visual", q: "Text on InfoView display is cut off or not formatted correctly", sev: "quick", a: "The message content may be too long for the display template being used.", steps: ["Preview the message in EPIC before sending to check how it renders.", "Shorten the message text or use a template designed for longer content.", "Check the font size setting — very small text may not be legible at a distance.", "If using a custom layout, verify it is compatible with the InfoView Display model on campus."] }
